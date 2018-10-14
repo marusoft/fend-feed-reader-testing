@@ -54,9 +54,11 @@ $(function () {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', () => {
+        let body;
+        let menu;
         beforeEach(() => {
-            let body;
-            let menu;
+            body = document.querySelector('body');
+            menu = document.querySelector('.menu-icon-link');
         });
 
         /* TODO: Write a test that ensures the menu element is
@@ -65,7 +67,6 @@ $(function () {
          * hiding/showing of the menu element.
          */
         it('is hidden by default', () => {
-            body = document.querySelector('body');
             expect(body.classList.contains('menu-hidden')).toBe(true);
         });
 
@@ -75,8 +76,6 @@ $(function () {
          * clicked and does it hide when clicked again.
          */
         it('changes visibility when clicked', () => {
-            body = document.querySelector('body');
-            menu = document.querySelector('.menu-icon-link');
             menu.click();
             expect(body.classList.contains('menu-hidden')).toBe(false);
             expect(menu.classList.contains('menu-hidden')).toBe(false);
