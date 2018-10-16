@@ -85,44 +85,54 @@ $(function () {
 
 
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* A new test suite named "Initial Entries" */
     describe('Initial Entries', () => {
-        /* TODO: Write a test that ensures when the loadFeed
+        /* A test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        // this ensures before all test looadFeed would have complete
         beforeEach((done) => {
-            loadFeed(0, done);
+            loadFeed(0, () => {
+                done();
+            });
         });
-        it('loadFeed completes its work', () => {
-            const feed = document.querySelector('.feed');
-            expect(feed.children.length > 0).toBe(true);
+
+        it('contain at least a single .entry', () => {
+            let feedEntries = document.querySelectorAll('.feed .entry');
+            expect(feedEntries.length).toBeGreaterThan(0);
         });
 
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* A new test suite named "New Feed Selection" */
     describe('New Feed Selection', () => {
-        const feed = document.querySelector('.feed');
-        const initialFeed = [];
-        /* TODO: Write a test that ensures when a new feed is loaded
+        let initialFeed;
+        /* A test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         beforeEach((done) => {
-            loadFeed(0);
-            Array.from(feed.children).forEach((entry) => {
-                initialFeed.push(entry.innerText);
+
+            // load the initial(first) feed of allFeeds object and wait till the
+            // feed is loaded
+            loadFeed(0, () => {
+                // the first loaded feed stored in initialFeed
+                initialFeed = document.querySelector('.feed').innerText;
+
+                // load the next(second) feed of allFeeds object and wait till the
+                // feed is loaded
+                loadFeed(1, () => {
+                    done();
+                });
             });
-            loadFeed(1, done);
         });
 
-        it('is loaded the content changes', () => {
-            Array.from(feed.children).forEach((entry, index) => {
-                expect(entry.innerText === initialFeed[index]).toBe(false);
-            });
+        it('is loaded the content actually changes', () => {
+            let nextFeedSelected = document.querySelector('.feed').innerText;
+            expect(initialFeed).not.toBe(nextFeedSelected);
         });
 
     });
