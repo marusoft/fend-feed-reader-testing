@@ -1,6 +1,6 @@
 # Feed Reader Testing
 
-In this project I was given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where I come in.
+Implement Behavior Driven Development (BDD) on a pre-existing web-based application that reads RSS feeds using Jasmine.js; JavaScript Testing Framework
 
 [Project](https://marusoft.github.io/fend-feed-reader-testing/)
 
@@ -26,7 +26,7 @@ $ cd fend-feed-reader-testing.git
 
 ```
 
-* Load the index.html on a current version browser like Chrome.
+* Load the index.html on a current browser like Chrome.
 
 * Edit the code using your preferable Text Editor.
 
@@ -46,3 +46,7 @@ $ cd fend-feed-reader-testing.git
 11. I Wrote a test that ensures when a new feed is loaded by the `loadFeed` function that the content actually changes.
 12. I ensure that None of the test are dependent on the results of another.
 13. Callbacks was used to ensure that feeds are loaded before they are tested.
+
+# Author
+
+Developed by Alimi Kehinde Maruf (marusoft)
